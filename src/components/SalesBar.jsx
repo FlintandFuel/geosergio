@@ -1,22 +1,9 @@
 import { useState, useEffect } from 'react'
 
-// ─── localStorage key ─────────────────────────────────────
-const LS_KEY = 'sb_start'
-const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000
-
-// ─── Timer logic ──────────────────────────────────────────
-// On first load: record Date.now() under 'sb_start'.
-// On every subsequent load: read that value.
-// Expiry = sb_start + 7 days. Never resets across refreshes
-// or return visits unless localStorage is manually cleared.
-function getExpiry() {
-  let start = parseInt(localStorage.getItem(LS_KEY), 10)
-  if (!start || isNaN(start)) {
-    start = Date.now()
-    localStorage.setItem(LS_KEY, String(start))
-  }
-  return start + SEVEN_DAYS_MS
-}
+// ─── CHANGE THIS DATE TO RESET THE TIMER ─────────────────
+// Set to 7 days from today, format: YYYY-MM-DD
+const OFFER_EXPIRY = '2026-06-29'
+// ──────────────────────────────────────────────────────────
 
 function pad(n) {
   return String(n).padStart(2, '0')
@@ -49,7 +36,7 @@ export default function SalesBar() {
   const [remaining, setRemaining] = useState(null)
 
   useEffect(() => {
-    const expiry = getExpiry()
+    const expiry = new Date(OFFER_EXPIRY + 'T23:59:59').getTime()
 
     const tick = () => setRemaining(expiry - Date.now())
     tick()
