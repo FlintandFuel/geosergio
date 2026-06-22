@@ -39,18 +39,6 @@ export default function Story() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { name: 'Enzo', role: 'Auto Electrician' },
-              { name: 'Babbo', role: 'Auto Electrician' },
-              { name: 'Andrew', role: 'Workshop' },
-            ].map(person => (
-              <div key={person.name} className="border-l-2 border-accent pl-4">
-                <div className="font-display font-bold text-[#141414] text-lg">{person.name}</div>
-                <div className="text-sm text-[#6b7280] mt-1">{person.role}</div>
-              </div>
-            ))}
-          </div>
         </motion.div>
 
         <motion.div
